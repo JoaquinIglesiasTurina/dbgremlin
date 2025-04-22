@@ -4,6 +4,7 @@ import com.databricks.sdk.service.jobs.RunJobTask
 import com.databricks.sdk.service.jobs.JobSettings
 
 import scala.jdk.CollectionConverters._
+import scala.util.Success
 
 class DatabricsUtilsSuite extends munit.FunSuite {
   test("get dependent job ids") {
@@ -13,12 +14,11 @@ class DatabricsUtilsSuite extends munit.FunSuite {
     val inputJob = Job().setSettings(settings).setJobId(4321L)
 
     val dependentJobs = getDependentJobIds(inputJob)
-    assertEquals(dependentJobs, List(1234L))
+    assertEquals(dependentJobs, Success(List(1234L)))
   }
 
   test("get dependent job ids with empty job") {
     val inputJob = new Job()
-    getDependentJobIds(inputJob)
-    assert(false)
+    assert(getDependentJobIds(inputJob).isFailure)
   }
 }
