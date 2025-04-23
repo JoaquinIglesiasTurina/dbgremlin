@@ -19,8 +19,6 @@ class GetDependentJobIdsSuite extends munit.FunSuite:
   test("get dependent job ids"):
     val dependentJobs = getDependentJobIds(inputJob)
     assertEquals(dependentJobs, Success(List(1234L)))
-  
-
   test("get dependent job ids with empty job"):
     val inputJob = new Job()
     assert(getDependentJobIds(inputJob).isFailure)
@@ -29,7 +27,6 @@ class MockJobsAPI(apiClient: ApiClient) extends JobsAPI(apiClient: ApiClient):
   override def get(jobId: Long) = 
       val settings = JobSettings().setTasks(Seq().asJava)
       Job().setJobId(jobId).setSettings(settings)
-  
 class  MockWorkspaceClient() extends WorkspaceClient:
   override def jobs(): MockJobsAPI = MockJobsAPI(ApiClient())
 
