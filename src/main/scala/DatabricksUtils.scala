@@ -30,7 +30,7 @@ def getAllDependentJobs(
   while (jobIds.size > 0)
     val j = workspaceClient.jobs().get(jobIds.head)
     outputJobs = outputJobs :+ j
-    val outputJobIds = outputJobs.map(_.getJobId) 
+    val outputJobIds = outputJobs.map(_.getJobId)
     
     getDependentJobIds(j) match 
       case Success(newJobs) => 
