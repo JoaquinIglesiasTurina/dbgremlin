@@ -32,4 +32,4 @@ jobs:
     - name: Run tests
       run: sbt test
     - name: Generate JAR
-      uses: sbt assembly
+      run: sbt assembly
