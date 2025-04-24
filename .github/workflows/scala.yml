@@ -33,10 +33,12 @@ jobs:
       run: sbt test
     - name: Generate JAR
       run: sbt assembly
+      run: ls ./target/
+      run: ls ./target/scala-3.6.4
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: dbgremlin.jar
-        path: /target/scala-3.6.4/dbgremlin-assembly-*.jar
+        path: ./target/scala-3.6.4/dbgremlin-assembly-*.jar
         overwrite: true
 
