@@ -20,6 +20,7 @@ Make sure that the Workspace you want to grant premissions in is set as default.
 host  = https://adb-<your-workspace-id>.10.azuredatabricks.net
 token = dapp<your-personal-access-token>-2
 ```
+Yout can check that `databricks jobs list` contains the Workflow you want to grant permissions on. If so, the Databricks CLI is configured correctly.
 
 You also need `java`.
 
