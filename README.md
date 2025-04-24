@@ -1,8 +1,28 @@
-## sbt project compiled with Scala 3
+# The Problem
+You need to grant permissions to your colleague in a Databricks Workflow.
+This Workflow is full of nested Workflows. 
+It looks like this:
+![Workflow](./workflow.PNG)
 
-### Usage
+You have to click on each workflow and grant permissions on each
+of the nested Workflows.
 
-This is a normal sbt project. You can compile code with `sbt compile`, run it with `sbt run`, and `sbt console` will start a Scala 3 REPL.
+# The solution
+`java -jar dbgremlins --user-email "your-colleage@email.com" --job-id 1234567897`
 
-For more information on the sbt-dotty plugin, see the
-[scala3-example-project](https://github.com/scala/scala3-example-project/blob/main/README.md).
+A single command recursively sets permissions on each of the nested Workflows.
+
+# Prerequisites
+You need to have [Databricks CLI configured](https://learn.microsoft.com/en-us/azure/databricks/dev-tools/cli/tutorial)
+Make sure that the Workspace you want to grant premissions in is set as default. In your `.databrickscfg` file:
+```
+[DEFAULT]
+host  = https://adb-<your-workspace-id>.10.azuredatabricks.net
+token = dapp<your-personal-access-token>-2
+```
+
+You also need `java`.
+
+## Limitations
+As of now, only `CAN_MANAGE` permissions are granted.
+Tested on Azure Databricks only.
