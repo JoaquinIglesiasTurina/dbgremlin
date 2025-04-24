@@ -33,7 +33,9 @@ jobs:
       run: sbt test
     - name: Generate JAR
       run: sbt assembly
+    - name: Debug
       run: ls ./target/
+    - name: Debug 2
       run: ls ./target/scala-3.6.4
     - name: Upload artifact
       uses: actions/upload-artifact@v4
