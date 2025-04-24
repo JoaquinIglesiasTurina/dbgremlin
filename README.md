@@ -8,9 +8,11 @@ You have to click on each workflow and grant permissions on each
 of the nested Workflows.
 
 # The solution
-`java -jar dbgremlin --user-email "your-colleage@email.com" --job-id 1234567897`
+`java -jar dbgremlin.jar --user-email "your-colleague@email.com" --job-id 1234567897`
 
 A single command recursively sets permissions on each of the nested Workflows.
+The `jar` is available on the [actions artifacts](https://github.com/JoaquinIglesiasTurina/dbgremlin/actions).
+Click on any successful run, and you can download the jar there.
 
 # Prerequisites
 You need to have [Databricks CLI configured](https://learn.microsoft.com/en-us/azure/databricks/dev-tools/cli/tutorial)
