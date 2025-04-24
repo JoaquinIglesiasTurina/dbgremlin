@@ -8,7 +8,7 @@ You have to click on each workflow and grant permissions on each
 of the nested Workflows.
 
 # The solution
-`java -jar dbgremlins --user-email "your-colleage@email.com" --job-id 1234567897`
+`java -jar dbgremlin --user-email "your-colleage@email.com" --job-id 1234567897`
 
 A single command recursively sets permissions on each of the nested Workflows.
 
