@@ -10,6 +10,8 @@ import com.databricks.sdk.WorkspaceClient
 import com.databricks.sdk.service.jobs.JobsAPI
 import com.databricks.sdk.core.ApiClient
 
+import DatabricksUtils._
+
 val runJobTask = RunJobTask().setJobId(1234L)
 val task = Task().setRunJobTask(runJobTask)
 val settings = JobSettings().setTasks(Seq(task).asJava)

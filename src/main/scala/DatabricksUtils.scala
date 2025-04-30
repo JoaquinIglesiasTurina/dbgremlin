@@ -1,3 +1,5 @@
+package DatabricksUtils
+
 import com.databricks.sdk.WorkspaceClient
 import com.databricks.sdk.service.jobs.Job
 import com.databricks.sdk.service.jobs.RunJobTask

@@ -1,3 +1,4 @@
+package GivePermissions
 import com.databricks.sdk.WorkspaceClient
 import com.databricks.sdk.service.jobs.Job
 import com.databricks.sdk.service.jobs.JobAccessControlRequest
@@ -5,6 +6,7 @@ import com.databricks.sdk.service.jobs.JobPermissionLevel
 import com.databricks.sdk.service.jobs.JobPermissionsRequest
 
 import scala.jdk.CollectionConverters._
+import GivePermissions.givePermissions
 
 val workspaceClient = new WorkspaceClient()
 
@@ -32,5 +34,5 @@ def givePermissions(
   jobAccessControlRequest.setUserName(userEmail)
 
   val job = workspaceClient.jobs().get(jobId)
-  getAllDependentJobs(workspaceClient, job)
+  DatabricksUtils.getAllDependentJobs(workspaceClient, job)
     .foreach(setPermissions(workspaceClient, jobAccessControlRequest, _))
