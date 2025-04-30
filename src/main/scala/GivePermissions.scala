@@ -6,7 +6,6 @@ import com.databricks.sdk.service.jobs.JobPermissionLevel
 import com.databricks.sdk.service.jobs.JobPermissionsRequest
 
 import scala.jdk.CollectionConverters._
-import GivePermissions.givePermissions
 
 val workspaceClient = new WorkspaceClient()
 
