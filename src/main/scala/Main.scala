@@ -1,7 +1,7 @@
 import org.rogach.scallop._
 
 class Conf(argumens: Seq[String]) extends ScallopConf(argumens):
-    object GivePermissionsConf extends Subcommand("give-permissions"):
+    object GivePermissionsConf extends Subcommand("give-job-permissions"):
         val userEmail = opt[String](required = true)
         val jobId = opt[Long](required = true)
     addSubcommand(GivePermissionsConf)

@@ -6,7 +6,7 @@ class MainSuite extends munit.FunSuite, Stubs:
     mainFunctions.givePermissions
       .returns((userEmail: String, jobId: Long) => ())
     mainWithFunctions(
-        Array("give-permissions", "--job-id", "1234", "--user-email", "some@email.com"), 
+        Array("give-job-permissions", "--job-id", "1234", "--user-email", "some@email.com"), 
         mainFunctions)
     assertEquals(mainFunctions.givePermissions.times, 1)
     assertEquals(mainFunctions.givePermissions.calls, List(("some@email.com", 1234L)))
