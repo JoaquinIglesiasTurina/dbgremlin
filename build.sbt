@@ -4,7 +4,7 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "dbgremlin",
-    version := "0.1.0-SNAPSHOT",
+    version := "0.1.0",
 
     scalaVersion := scala3Version,
     semanticdbEnabled := true,
@@ -25,3 +25,5 @@ assemblyMergeStrategy in assembly := {
  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
  case x => MergeStrategy.first
 }
+
+mainClass in assembly := Some("Main")

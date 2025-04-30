@@ -1,14 +1,15 @@
+import DatabricksUtils._
+import com.databricks.sdk.WorkspaceClient
+import com.databricks.sdk.core.ApiClient
 import com.databricks.sdk.service.jobs.Job
-import com.databricks.sdk.service.jobs.Task
-import com.databricks.sdk.service.jobs.RunJobTask
 import com.databricks.sdk.service.jobs.JobSettings
-
+import com.databricks.sdk.service.jobs.JobsAPI
+import com.databricks.sdk.service.jobs.RunJobTask
+import com.databricks.sdk.service.jobs.Task
 import org.scalamock.stubs.Stubs
+
 import scala.jdk.CollectionConverters._
 import scala.util.Success
-import com.databricks.sdk.WorkspaceClient
-import com.databricks.sdk.service.jobs.JobsAPI
-import com.databricks.sdk.core.ApiClient
 
 val runJobTask = RunJobTask().setJobId(1234L)
 val task = Task().setRunJobTask(runJobTask)
