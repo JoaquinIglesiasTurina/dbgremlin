@@ -15,8 +15,6 @@ def setPermissions(
   job: Job
 ) =
   val collection = Seq(jobAccessControlRequest).asJavaCollection
-  val oldPermissions = 
-    workspaceClient.jobs().getPermissions(job.getJobId().toString())
   val permissions = new JobPermissionsRequest()
   permissions.setAccessControlList(collection)
   permissions.setJobId(job.getJobId().toString())
@@ -25,11 +23,11 @@ def setPermissions(
 def givePermissions(
   userEmail: String,
   jobId: Long,
+  permissionLevel: JobPermissionLevel = JobPermissionLevel.CAN_MANAGE_RUN,
   workspaceClient: WorkspaceClient = workspaceClient
 ): Unit =
   val jobAccessControlRequest = new JobAccessControlRequest()
-  jobAccessControlRequest
-    .setPermissionLevel(JobPermissionLevel.CAN_MANAGE_RUN)
+  jobAccessControlRequest.setPermissionLevel(permissionLevel)
   jobAccessControlRequest.setUserName(userEmail)
 
   val job = workspaceClient.jobs().get(jobId)
