@@ -30,3 +30,13 @@ class MainSuite extends munit.FunSuite, Stubs:
     assertEquals(
       mainFunctions.givePermissions.calls,
       List(("some@email.com", 1234L, JobPermissionLevel.CAN_VIEW)))
+
+  test("call list dependent"):
+    val mainFunctions = stub[MainFunctions]
+    mainFunctions.listDependent
+      .returns((jobId: Long) => ())
+    mainWithFunctions(
+        Array("list-dependent", "--job-id", "1234"), 
+        mainFunctions)
+    assertEquals(mainFunctions.listDependent.times, 1)
+    assertEquals(mainFunctions.listDependent.calls, List((1234L)))
