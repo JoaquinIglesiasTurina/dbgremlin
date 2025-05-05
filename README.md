@@ -15,8 +15,14 @@ A single command recursively sets permissions on each of the nested Workflows.
 By default, it sets `CAN_MANAGE` permissions. But you can set a different level using the
 `--permission-level` option:
 `java -jar dbgremlin.jar give-job-permissions --permission-level CAN_VIEW --user-email "your-colleague@email.com" --job-id 1234567897`
+
 You cannot grant `IS_OWNER` level by design. You should not be granting those permissions willy nilly.
 
+## Listing dependent workflows
+If you just want to see which workflows depend on a given workflow, run:
+`java -jar dbgremlin.jar list-dependent --job-id 1234567897`
+
+## Where to find the jar
 The `jar` is available on the [actions artifacts](https://github.com/JoaquinIglesiasTurina/dbgremlin/actions).
 Click on any successful run, and you can download the jar there.
 
