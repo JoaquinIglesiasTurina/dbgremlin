@@ -11,6 +11,12 @@ of the nested Workflows.
 `java -jar dbgremlin.jar give-job-permissions --user-email "your-colleague@email.com" --job-id 1234567897`
 
 A single command recursively sets permissions on each of the nested Workflows.
+
+By default, it sets `CAN_MANAGE` permissions. But you can set a different level using the
+`--permission-level` option:
+`java -jar dbgremlin.jar give-job-permissions --permission-level CAN_VIEW --user-email "your-colleague@email.com" --job-id 1234567897`
+You cannot grant `IS_OWNER` level by design. You should not be granting those permissions willy nilly.
+
 The `jar` is available on the [actions artifacts](https://github.com/JoaquinIglesiasTurina/dbgremlin/actions).
 Click on any successful run, and you can download the jar there.
 
@@ -27,5 +33,4 @@ Yout can check that `databricks jobs list` contains the Workflow you want to gra
 You also need `java`.
 
 ## Limitations
-As of now, only `CAN_MANAGE` permissions are granted.
 Tested on Azure Databricks only.
