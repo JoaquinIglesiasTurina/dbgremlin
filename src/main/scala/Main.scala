@@ -5,10 +5,9 @@ class Conf(argumens: Seq[String]) extends ScallopConf(argumens):
   object GivePermissionsConf extends Subcommand("give-job-permissions"):
     val userEmail = opt[String](required = true)
     val jobId = opt[Long](required = true)
-        val permissionLevel = choice(
-            Seq("CAN_MANAGE_RUN", "CAN_MANAGE", "CAN_VIEW"),
-            default = Some("CAN_MANAGE_RUN")
-        )
+    val permissionLevel = choice(
+      Seq("CAN_MANAGE_RUN", "CAN_MANAGE", "CAN_VIEW"),
+      default = Some("CAN_MANAGE_RUN"))
   addSubcommand(GivePermissionsConf)
   object ListDependentConf extends Subcommand("list-dependent"):
     val jobId = opt[Long](required = true)
@@ -20,8 +19,8 @@ class MainFunctions:
         userEmail: String, 
         jobId: Long, 
         permissionLevel: JobPermissionLevel
-    ): Unit =
-    GivePermissions.givePermissions(userEmail, jobId)
+  ): Unit =
+    GivePermissions.givePermissions(userEmail, jobId, permissionLevel)
   def listDependent(jobId: Long) =
     ListDependent.listDependent(jobId)
 
@@ -37,7 +36,7 @@ def mainWithFunctions(
             val permissionLevel = JobPermissionLevel.valueOf(
                 conf.GivePermissionsConf.permissionLevel()
             )
-      println(s"giving ${userEmail} permissions in job ${jobId}")
+      println(s"giving ${userEmail} permissions in job ${jobId} of type ${permissionLevel.toString()}")
       mainFunctions.givePermissions(userEmail, jobId, permissionLevel)
     case Some(conf.ListDependentConf) =>
       val jobId = conf.GivePermissionsConf.jobId()
