@@ -2,26 +2,28 @@ import org.rogach.scallop._
 import com.databricks.sdk.service.jobs.JobPermissionLevel
 
 class Conf(argumens: Seq[String]) extends ScallopConf(argumens):
-  object GivePermissionsConf extends Subcommand("give-job-permissions"):
-    val userEmail = opt[String](required = true)
+  trait CommonOpts extends ScallopConf:
     val jobId = opt[Long](required = true)
+
+  object GivePermissionsConf extends Subcommand("give-job-permissions"), CommonOpts:
+    val userEmail = opt[String](required = true)
     val permissionLevel = choice(
       Seq("CAN_MANAGE_RUN", "CAN_MANAGE", "CAN_VIEW"),
       default = Some("CAN_MANAGE_RUN"))
   addSubcommand(GivePermissionsConf)
-  object ListDependentConf extends Subcommand("list-dependent"):
-    val jobId = opt[Long](required = true)
+
+  object ListDependentConf extends Subcommand("list-dependent"), CommonOpts
   addSubcommand(ListDependentConf)
   verify()
 
 class MainFunctions:
   def givePermissions(
-        userEmail: String, 
-        jobId: Long, 
-        permissionLevel: JobPermissionLevel
+    userEmail: String, 
+    jobId: Long, 
+    permissionLevel: JobPermissionLevel
   ): Unit =
     GivePermissions.givePermissions(userEmail, jobId, permissionLevel)
-  def listDependent(jobId: Long) =
+  def listDependent(jobId: Long) = 
     ListDependent.listDependent(jobId)
 
 def mainWithFunctions(
