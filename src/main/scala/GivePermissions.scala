@@ -7,8 +7,6 @@ import com.databricks.sdk.service.jobs.JobPermissionsRequest
 
 import scala.jdk.CollectionConverters._
 
-val workspaceClient = new WorkspaceClient()
-
 def setPermissions(
   workspaceClient: WorkspaceClient,
   jobAccessControlRequest: JobAccessControlRequest,
@@ -23,8 +21,8 @@ def setPermissions(
 def givePermissions(
   userEmail: String,
   jobId: Long,
-  permissionLevel: JobPermissionLevel = JobPermissionLevel.CAN_MANAGE_RUN,
-  workspaceClient: WorkspaceClient = workspaceClient
+  permissionLevel: JobPermissionLevel,
+  workspaceClient: WorkspaceClient
 ): Unit =
   val jobAccessControlRequest = new JobAccessControlRequest()
   jobAccessControlRequest.setPermissionLevel(permissionLevel)
