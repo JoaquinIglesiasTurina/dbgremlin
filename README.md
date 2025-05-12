@@ -40,3 +40,10 @@ You also need `java`.
 
 ## Limitations
 Tested on Azure Databricks only.
+
+# Other options
+If you have configured multiple profiles in your `.databrickscfg` file,
+you can pass which one you want to use throught the `--profile` option.
+`java -jar dbgremlin.jar list-dependent --job-id 1234567897 --profile MYPROFILE`
+
+See the [prerequisites](#Prerequisites) for more information.
