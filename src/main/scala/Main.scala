@@ -40,9 +40,8 @@ def mainWithFunctions(args: Seq[String], mainFunctions: MainFunctions): Unit =
       val workspaceClient = WorkspaceClient(databricksConfig)
       val userEmail = conf.GivePermissionsConf.userEmail()
       val jobId = conf.GivePermissionsConf.jobId()
-            val permissionLevel = JobPermissionLevel.valueOf(
-                conf.GivePermissionsConf.permissionLevel()
-            )
+      val permissionLevel = 
+        JobPermissionLevel.valueOf(conf.GivePermissionsConf.permissionLevel())
       println(s"giving ${userEmail} permissions in job ${jobId} of type ${permissionLevel.toString()}")
       mainFunctions
         .givePermissions(userEmail, jobId, permissionLevel, workspaceClient)

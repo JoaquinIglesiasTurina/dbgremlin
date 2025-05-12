@@ -29,5 +29,6 @@ def givePermissions(
   jobAccessControlRequest.setUserName(userEmail)
 
   val job = workspaceClient.jobs().get(jobId)
-  DatabricksUtils.getAllDependentJobs(workspaceClient, job)
+  DatabricksUtils
+    .getAllDependentJobs(workspaceClient, job)
     .foreach(setPermissions(workspaceClient, jobAccessControlRequest, _))
